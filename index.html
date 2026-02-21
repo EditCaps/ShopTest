@@ -6,6 +6,8 @@
 <title>EDIT CAPS — Магазин кепок</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Ключи подключаются из config.js — этого файла нет в GitHub (.gitignore) -->
+<script src="config.js" onerror="console.warn('config.js не найден — демо режим')"></script>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -1711,10 +1713,25 @@ function showToast(msg, type = 'default') {
 // INIT
 // =====================
 async function init() {
-  // Товары грузим в демо режиме при старте
-  // Supabase подключается только после входа в админку
-  loadDemoProducts();
-  setDbStatus('', 'Демо режим — войдите в админку для подключения БД');
+  // Пробуем взять ключи из config.js (который в .gitignore — GitHub не видит)
+  const cfg = window.EDITCAPS_CONFIG;
+
+  if (cfg && cfg.supabaseUrl && cfg.supabaseKey
+      && !cfg.supabaseUrl.includes('ТВОЙ_ПРОЕКТ')) {
+    try {
+      supabaseClient = supabase.createClient(cfg.supabaseUrl, cfg.supabaseKey);
+      sessionUrl = cfg.supabaseUrl;
+      sessionKey = cfg.supabaseKey;
+      setDbStatus('blink', 'Загрузка товаров...');
+      await loadProducts();
+    } catch(e) {
+      loadDemoProducts();
+    }
+  } else {
+    // config.js не найден или не заполнен — показываем демо товары
+    loadDemoProducts();
+    setDbStatus('', 'Демо режим');
+  }
 }
 
 init();
