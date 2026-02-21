@@ -102,6 +102,7 @@
   .load-dot:nth-child(2) { animation-delay: 0.2s; } .load-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes loadPulse { 0%,80%,100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
 
+  /* CART */
   .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(4px); }
   .cart-overlay.open { opacity: 1; pointer-events: all; }
   .cart-sidebar { position: fixed; top: 0; right: 0; bottom: 0; width: 420px; background: var(--surface); border-left: 1px solid var(--border); z-index: 201; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
@@ -125,9 +126,26 @@
   .cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
   .cart-total-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; }
   .cart-total-amount { font-family: var(--font-display); font-size: 2rem; color: var(--accent); }
-  .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 1rem; font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.05em; cursor: none; transition: all 0.3s; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
-  .checkout-btn:hover { background: var(--text); transform: translateY(-2px); }
 
+  /* PAYPAL CONTAINER */
+  .paypal-wrap { margin-top: 0.5rem; }
+  .paypal-wrap-empty { background: var(--card); border: 1px solid var(--border); padding: 1.2rem; text-align: center; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+  .paypal-no-config { background: rgba(255,85,51,0.08); border: 1px solid rgba(255,85,51,0.25); padding: 1rem 1.2rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--accent2); line-height: 1.7; }
+  .paypal-no-config a { color: var(--accent); text-decoration: underline; }
+  /* Override PayPal button container background for dark theme */
+  #paypal-button-container .paypal-button { border-radius: 0 !important; }
+
+  /* SUCCESS OVERLAY */
+  .payment-success { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease; }
+  .payment-success-box { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 3rem; text-align: center; max-width: 400px; width: 90%; }
+  .payment-success-icon { font-size: 4rem; display: block; margin-bottom: 1.5rem; animation: popIn 0.5s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+  .payment-success-title { font-family: var(--font-display); font-size: 3rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .payment-success-msg { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .payment-success-close { background: var(--accent); color: #000; border: none; padding: 0.8rem 2.5rem; font-family: var(--font-display); font-size: 1.1rem; cursor: pointer; transition: all 0.3s; }
+  .payment-success-close:hover { background: var(--text); }
+
+  /* ADMIN */
   .admin-panel { position: fixed; inset: 0; background: var(--bg); z-index: 300; display: none; flex-direction: column; }
   .admin-panel.open { display: flex; }
   .admin-nav { padding: 1.2rem 2rem; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 2rem; }
@@ -149,8 +167,6 @@
   .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-submit { background: var(--accent); color: #000; border: none; padding: 0.8rem 2rem; font-family: var(--font-display); font-size: 1.1rem; cursor: none; transition: all 0.3s; margin-top: 0.5rem; }
   .form-submit:hover { background: var(--text); }
-
-  /* IMAGE UPLOAD */
   .upload-area { border: 2px dashed var(--border); padding: 2rem; text-align: center; cursor: none; transition: all 0.3s; position: relative; background: var(--bg); }
   .upload-area:hover, .upload-area.dragover { border-color: var(--accent); background: rgba(240,224,64,0.03); }
   .upload-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
@@ -163,7 +179,6 @@
   .upload-preview-remove:hover { transform: scale(1.15); }
   .upload-progress { margin-top: 0.8rem; height: 3px; background: var(--border); position: relative; overflow: hidden; }
   .upload-progress-bar { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
-
   .admin-products-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); }
   .admin-products-table th { text-align: left; padding: 0.8rem 1rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; border-bottom: 1px solid var(--border); background: var(--surface); }
   .admin-products-table td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; vertical-align: middle; }
@@ -173,13 +188,11 @@
   .table-badge { display: inline-block; background: rgba(240,224,64,0.15); color: var(--accent); border: 1px solid rgba(240,224,64,0.3); padding: 0.15rem 0.5rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; }
   .table-action { background: none; border: 1px solid var(--border); color: var(--muted); padding: 0.25rem 0.6rem; font-family: var(--font-mono); font-size: 0.65rem; cursor: none; transition: all 0.2s; margin-right: 0.3rem; }
   .table-action:hover { border-color: var(--accent2); color: var(--accent2); }
-
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block; }
   .status-dot.connected { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
   .status-dot.error { background: var(--accent2); }
   .status-dot.blink { animation: blink 1s infinite; }
   @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
   .supabase-config { background: rgba(240,224,64,0.05); border: 1px solid rgba(240,224,64,0.2); padding: 1.5rem; margin-bottom: 2rem; }
   .supabase-config-title { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
 
@@ -327,7 +340,7 @@
   <p style="color:var(--accent)">Made with 🧢 & code</p>
 </div>
 
-<!-- CART -->
+<!-- CART SIDEBAR -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
@@ -335,18 +348,25 @@
     <button class="cart-close" id="cartCloseBtn">✕</button>
   </div>
   <div class="cart-items" id="cartItems">
-    <div class="cart-empty"><span class="cart-empty-icon">🧢</span><p style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;color:var(--muted)">CART IS EMPTY</p></div>
+    <div class="cart-empty">
+      <span class="cart-empty-icon">🧢</span>
+      <p style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;color:var(--muted)">CART IS EMPTY</p>
+    </div>
   </div>
   <div class="cart-footer">
     <div class="cart-total">
       <span class="cart-total-label">TOTAL</span>
       <span class="cart-total-amount" id="cartTotal">$0</span>
     </div>
-    <button class="checkout-btn" onclick="showToast('Checkout coming soon!')">CHECKOUT</button>
+    <!-- PayPal renders here -->
+    <div class="paypal-wrap">
+      <div id="paypal-button-container"></div>
+      <div class="paypal-wrap-empty" id="paypalEmptyMsg">ADD ITEMS TO CHECKOUT</div>
+    </div>
   </div>
 </div>
 
-<!-- ADMIN -->
+<!-- ADMIN PANEL -->
 <div class="admin-panel" id="adminPanel">
   <div class="admin-nav">
     <div class="admin-logo">⚡ ADMIN</div>
@@ -462,7 +482,7 @@
 </div>
 
 <script>
-// CURSOR
+// ─── CURSOR ───────────────────────────────────────────────
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
@@ -471,43 +491,184 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 document.addEventListener('mousedown',()=>{cursor.style.transform='translate(-50%,-50%) scale(0.7)';cursorRing.style.transform='translate(-50%,-50%) scale(0.8)';});
 document.addEventListener('mouseup',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursorRing.style.transform='translate(-50%,-50%) scale(1)';});
 
-// STATE
-let supabaseClient=null,products=[],cart=[];
-let sessionUrl=null,sessionKey=null,adminUnlocked=false,pendingImageFile=null;
+// ─── STATE ────────────────────────────────────────────────
+let supabaseClient=null, products=[], cart=[];
+let sessionUrl=null, sessionKey=null, adminUnlocked=false, pendingImageFile=null;
+let paypalLoaded=false, paypalRendered=false;
 
-// STATUS
-function setDbStatus(state,text){
-  const dot=document.getElementById('dbStatusDot'),label=document.getElementById('dbStatusText');
-  if(!dot||!label)return;
+// ─── TOAST ────────────────────────────────────────────────
+function showToast(msg, type='default'){
+  const c=document.getElementById('toastContainer'), t=document.createElement('div');
+  t.className='toast'+(type==='error'?' error':'');
+  t.textContent=msg;
+  c.appendChild(t);
+  setTimeout(()=>t.remove(), 3000);
+}
+
+// ─── STATUS ───────────────────────────────────────────────
+function setDbStatus(state, text){
+  const dot=document.getElementById('dbStatusDot'), label=document.getElementById('dbStatusText');
+  if(!dot||!label) return;
   dot.className='status-dot '+(state==='connected'?'connected':state==='error'?'error':'blink');
   label.textContent=text;
 }
 
-// TOAST
-function showToast(msg,type='default'){
-  const c=document.getElementById('toastContainer'),t=document.createElement('div');
-  t.className='toast'+(type==='error'?' error':'');t.textContent=msg;
-  c.appendChild(t);setTimeout(()=>t.remove(),3000);
+// ─── PAYPAL ───────────────────────────────────────────────
+/**
+ * Dynamically loads the PayPal SDK using the Client ID from config.js.
+ * Called once on page load.
+ */
+function loadPayPalSDK(){
+  const clientId = window.EDITCAPS_CONFIG?.paypalClientId;
+  if(!clientId || clientId === 'YOUR_PAYPAL_SANDBOX_CLIENT_ID'){
+    console.info('PayPal: No Client ID in config.js — PayPal buttons will show a setup prompt.');
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&currency=USD`;
+  script.onload = () => { paypalLoaded = true; renderPayPalIfReady(); };
+  script.onerror = () => console.error('PayPal SDK failed to load.');
+  document.head.appendChild(script);
 }
 
-// SUPABASE CONNECT
+/**
+ * Renders (or re-renders) the PayPal Smart Buttons.
+ * Safe to call multiple times — clears previous render each time.
+ */
+function renderPayPalIfReady(){
+  const container = document.getElementById('paypal-button-container');
+  const emptyMsg  = document.getElementById('paypalEmptyMsg');
+  if(!container) return;
+
+  // Not configured
+  const clientId = window.EDITCAPS_CONFIG?.paypalClientId;
+  if(!clientId || clientId === 'YOUR_PAYPAL_SANDBOX_CLIENT_ID'){
+    emptyMsg.innerHTML = `
+      <div class="paypal-no-config">
+        ⚠ PayPal not configured<br>
+        Open <strong>config.js</strong> and add your<br>
+        <strong>paypalClientId</strong> from
+        <a href="https://developer.paypal.com" target="_blank">developer.paypal.com</a>
+      </div>`;
+    return;
+  }
+
+  // Cart is empty
+  if(cart.length === 0){
+    container.innerHTML = '';
+    emptyMsg.style.display = 'block';
+    paypalRendered = false;
+    return;
+  }
+
+  // Cart has items — show PayPal button
+  emptyMsg.style.display = 'none';
+
+  if(!paypalLoaded || !window.paypal){
+    container.innerHTML = `<div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);text-align:center;padding:1rem;letter-spacing:0.1em">LOADING PAYPAL...</div>`;
+    return;
+  }
+
+  // Clear old render and re-render with current total
+  container.innerHTML = '';
+  paypalRendered = false;
+
+  const total = cart.reduce((s,p) => s + Number(p.price), 0).toFixed(2);
+  const itemNames = cart.map(p => p.name).join(', ');
+
+  paypal.Buttons({
+
+    style: {
+      layout: 'vertical',
+      color:  'gold',
+      shape:  'rect',
+      label:  'pay',
+      height: 45
+    },
+
+    // Step 1: Create the order on PayPal's servers
+    createOrder(data, actions){
+      return actions.order.create({
+        purchase_units: [{
+          description: `Edit Caps — ${cart.length} item(s)`,
+          amount: {
+            value: total,
+            currency_code: 'USD',
+            breakdown: {
+              item_total: { value: total, currency_code: 'USD' }
+            }
+          },
+          items: cart.map(p => ({
+            name: p.name,
+            unit_amount: { value: Number(p.price).toFixed(2), currency_code: 'USD' },
+            quantity: '1'
+          }))
+        }]
+      });
+    },
+
+    // Step 2: Capture payment after buyer approves
+    onApprove(data, actions){
+      return actions.order.capture().then(details => {
+        const name = details.payer.name.given_name + ' ' + details.payer.name.surname;
+        const orderId = details.id;
+        toggleCart(false);
+        showPaymentSuccess(name, orderId, total);
+        cart = [];
+        updateCart();
+      });
+    },
+
+    onError(err){
+      showToast('Payment error. Please try again.', 'error');
+      console.error('PayPal error:', err);
+    },
+
+    onCancel(){
+      showToast('Payment cancelled.');
+    }
+
+  }).render('#paypal-button-container');
+  paypalRendered = true;
+}
+
+/** Full-screen success overlay shown after successful payment */
+function showPaymentSuccess(name, orderId, total){
+  const overlay = document.createElement('div');
+  overlay.className = 'payment-success';
+  overlay.innerHTML = `
+    <div class="payment-success-box">
+      <span class="payment-success-icon">🧢</span>
+      <div class="payment-success-title">PAID!</div>
+      <div class="payment-success-msg">
+        Thank you, <strong>${name}</strong>!<br>
+        Order <span style="color:var(--accent)">#${orderId.slice(-8).toUpperCase()}</span> confirmed.<br>
+        Total charged: <span style="color:var(--accent)">$${total}</span>
+      </div>
+      <button class="payment-success-close" onclick="this.closest('.payment-success').remove()">CONTINUE SHOPPING</button>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
+// ─── DB STATUS ────────────────────────────────────────────
 async function connectSupabase(){
-  const url=document.getElementById('supaUrl')?.value?.trim()||'';
-  const key=document.getElementById('supaKey')?.value?.trim()||'';
-  if(!url||!key){showToast('Enter URL and Key!','error');return;}
+  const url = document.getElementById('supaUrl')?.value?.trim()||'';
+  const key = document.getElementById('supaKey')?.value?.trim()||'';
+  if(!url||!key){ showToast('Enter URL and Key!','error'); return; }
   try{
-    supabaseClient=supabase.createClient(url,key);
-    const{error}=await supabaseClient.from('products').select('id').limit(1);
-    if(error&&error.code!=='PGRST116')throw error;
-    sessionUrl=url;sessionKey=key;adminUnlocked=true;
+    supabaseClient = supabase.createClient(url, key);
+    const{error} = await supabaseClient.from('products').select('id').limit(1);
+    if(error && error.code!=='PGRST116') throw error;
+    sessionUrl=url; sessionKey=key; adminUnlocked=true;
     setDbStatus('connected','Supabase connected ✓');
     document.getElementById('supaStatusDot').className='status-dot connected';
     document.getElementById('supaStatusLabel').textContent='connected';
-    showToast('Connected!');loadProducts();
-  }catch(e){showToast('Error: '+e.message,'error');setDbStatus('error','Error');}
+    showToast('Connected!');
+    loadProducts();
+  }catch(e){ showToast('Error: '+e.message,'error'); setDbStatus('error','Error'); }
 }
 
-// DEMO PRODUCTS
+// ─── DEMO PRODUCTS ────────────────────────────────────────
 const DEMO=[
   {id:1,name:'Snapback Pro Black',description:'Classic flat-brim snapback with embroidered logo',price:29,emoji:'🧢',category:'snapback',status:'new'},
   {id:2,name:'Bucket Wave White',description:'Cotton bucket hat with wide brim',price:22,emoji:'🪣',category:'bucket',status:'active'},
@@ -517,28 +678,27 @@ const DEMO=[
   {id:6,name:'Logo 5-Panel Camp',description:'Minimalist 5-panel with logo patch',price:24,emoji:'⛺',category:'other',status:'active'},
 ];
 
-function loadDemoProducts(){products=DEMO;setDbStatus('','Demo mode');renderProducts();renderAdminTable();}
+function loadDemoProducts(){ products=DEMO; setDbStatus('','Demo mode'); renderProducts(); renderAdminTable(); }
 
 async function loadProducts(){
-  if(!supabaseClient)return loadDemoProducts();
+  if(!supabaseClient) return loadDemoProducts();
   setDbStatus('blink','Loading...');
   try{
-    const{data,error}=await supabaseClient.from('products').select('*').neq('status','hidden').order('created_at',{ascending:false});
-    if(error)throw error;
-    products=data.length>0?data:DEMO;
+    const{data,error} = await supabaseClient.from('products').select('*').neq('status','hidden').order('created_at',{ascending:false});
+    if(error) throw error;
+    products = data.length>0 ? data : DEMO;
     setDbStatus('connected',`${products.length} products loaded`);
-    renderProducts();renderAdminTable();
-  }catch(e){loadDemoProducts();}
+    renderProducts(); renderAdminTable();
+  }catch(e){ loadDemoProducts(); }
 }
 
-// CATEGORY LABEL
-function getCatLabel(cat){return{snapback:'Snapback',fitted:'Fitted',bucket:'Bucket Hat',trucker:'Trucker',other:'Other'}[cat]||cat||'Caps';}
+function getCatLabel(cat){ return{snapback:'Snapback',fitted:'Fitted',bucket:'Bucket Hat',trucker:'Trucker',other:'Other'}[cat]||cat||'Caps'; }
 
-// RENDER PRODUCTS
+// ─── RENDER PRODUCTS ──────────────────────────────────────
 function renderProducts(){
   const grid=document.getElementById('productsGrid');
-  if(!grid)return;
-  if(!products.length){grid.innerHTML='<div class="products-loading"><p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">No products found</p></div>';return;}
+  if(!grid) return;
+  if(!products.length){ grid.innerHTML='<div class="products-loading"><p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">No products found</p></div>'; return; }
   grid.innerHTML=products.map((p,i)=>`
     <div class="product-card" style="transition-delay:${i*0.07}s">
       <div class="product-image">
@@ -560,11 +720,11 @@ function renderProducts(){
   grid.querySelectorAll('.product-card').forEach(c=>obs.observe(c));
 }
 
-// ADMIN TABLE
+// ─── ADMIN TABLE ──────────────────────────────────────────
 function renderAdminTable(){
   const tbody=document.getElementById('adminTableBody');
-  if(!tbody)return;
-  if(!products.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:3rem;color:var(--muted);font-family:var(--font-mono);font-size:0.75rem">No products</td></tr>';return;}
+  if(!tbody) return;
+  if(!products.length){ tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:3rem;color:var(--muted);font-family:var(--font-mono);font-size:0.75rem">No products</td></tr>'; return; }
   tbody.innerHTML=products.map(p=>`
     <tr>
       <td>${p.image_url?`<img src="${p.image_url}" class="table-thumb" alt="">`:`<span class="table-thumb-emoji">${p.emoji||'🧢'}</span>`}</td>
@@ -576,11 +736,11 @@ function renderAdminTable(){
     </tr>`).join('');
 }
 
-// IMAGE UPLOAD
+// ─── IMAGE UPLOAD ─────────────────────────────────────────
 function handleImageSelect(input){
   const file=input.files[0];
-  if(!file)return;
-  if(file.size>5*1024*1024){showToast('Image too large! Max 5MB','error');return;}
+  if(!file) return;
+  if(file.size>5*1024*1024){ showToast('Image too large! Max 5MB','error'); return; }
   pendingImageFile=file;
   const reader=new FileReader();
   reader.onload=e=>{
@@ -589,7 +749,6 @@ function handleImageSelect(input){
   };
   reader.readAsDataURL(file);
 }
-
 function clearImageUpload(){
   pendingImageFile=null;
   document.getElementById('imageFileInput').value='';
@@ -598,7 +757,6 @@ function clearImageUpload(){
   document.getElementById('uploadProgress').style.display='none';
   document.getElementById('uploadProgressBar').style.width='0%';
 }
-
 async function uploadImage(file){
   const ext=file.name.split('.').pop();
   const fileName=`cap-${Date.now()}.${ext}`;
@@ -606,14 +764,12 @@ async function uploadImage(file){
   document.getElementById('uploadProgressBar').style.width='30%';
   const{error}=await supabaseClient.storage.from('product-images').upload(fileName,file,{cacheControl:'3600',upsert:false});
   document.getElementById('uploadProgressBar').style.width='80%';
-  if(error)throw error;
+  if(error) throw error;
   const{data}=supabaseClient.storage.from('product-images').getPublicUrl(fileName);
   document.getElementById('uploadProgressBar').style.width='100%';
-  setTimeout(()=>{document.getElementById('uploadProgress').style.display='none';},600);
+  setTimeout(()=>{ document.getElementById('uploadProgress').style.display='none'; },600);
   return data.publicUrl;
 }
-
-// Drag & drop
 const ua=document.getElementById('uploadArea');
 if(ua){
   ua.addEventListener('dragover',e=>{e.preventDefault();ua.classList.add('dragover');});
@@ -625,7 +781,7 @@ if(ua){
   });
 }
 
-// ADD PRODUCT
+// ─── ADD PRODUCT ──────────────────────────────────────────
 async function addProduct(){
   const name=document.getElementById('formName').value.trim();
   const desc=document.getElementById('formDesc').value.trim();
@@ -633,56 +789,65 @@ async function addProduct(){
   const emoji=document.getElementById('formEmoji').value||'🧢';
   const category=document.getElementById('formCategory').value;
   const status=document.getElementById('formStatus').value;
-  if(!name||!price){showToast('Fill in name and price!','error');return;}
-
+  if(!name||!price){ showToast('Fill in name and price!','error'); return; }
   let imageUrl=null;
   if(pendingImageFile){
-    if(!supabaseClient){showToast('Connect Supabase to upload images!','error');return;}
-    try{showToast('Uploading image...');imageUrl=await uploadImage(pendingImageFile);}
-    catch(e){showToast('Upload failed: '+e.message,'error');return;}
+    if(!supabaseClient){ showToast('Connect Supabase to upload images!','error'); return; }
+    try{ showToast('Uploading image...'); imageUrl=await uploadImage(pendingImageFile); }
+    catch(e){ showToast('Upload failed: '+e.message,'error'); return; }
   }
-
   const prod={name,description:desc,price,emoji,category,status,image_url:imageUrl};
   if(supabaseClient){
     try{
       const{data,error}=await supabaseClient.from('products').insert([prod]).select();
-      if(error)throw error;
-      products.unshift(data[0]);showToast('Product added! ✓');
-    }catch(e){showToast('Error: '+e.message,'error');return;}
+      if(error) throw error;
+      products.unshift(data[0]); showToast('Product added! ✓');
+    }catch(e){ showToast('Error: '+e.message,'error'); return; }
   }else{
-    prod.id=Date.now();products.unshift(prod);showToast('Added (demo mode)');
+    prod.id=Date.now(); products.unshift(prod); showToast('Added (demo mode)');
   }
-  renderProducts();renderAdminTable();
+  renderProducts(); renderAdminTable();
   ['formName','formDesc','formPrice','formEmoji'].forEach(id=>document.getElementById(id).value='');
   clearImageUpload();
-  switchAdminTab('products',document.querySelector('.admin-tab'));
+  switchAdminTab('products', document.querySelector('.admin-tab'));
 }
 
-// DELETE
+// ─── DELETE ───────────────────────────────────────────────
 async function deleteProduct(id){
-  if(!confirm('Delete this product?'))return;
+  if(!confirm('Delete this product?')) return;
   if(supabaseClient){
     const{error}=await supabaseClient.from('products').delete().eq('id',id);
-    if(error){showToast('Error: '+error.message,'error');return;}
+    if(error){ showToast('Error: '+error.message,'error'); return; }
   }
   products=products.filter(p=>String(p.id)!==String(id));
-  renderProducts();renderAdminTable();showToast('Product deleted');
+  renderProducts(); renderAdminTable(); showToast('Product deleted');
 }
 
-// CART
-function addToCart(p,btn){
-  cart.push(p);btn.textContent='✓ Added';btn.classList.add('added');
-  setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added');},1500);
-  updateCart();showToast(`${p.emoji||'🧢'} ${p.name} added to cart!`);
+// ─── CART ─────────────────────────────────────────────────
+function addToCart(p, btn){
+  cart.push(p);
+  btn.textContent='✓ Added';
+  btn.classList.add('added');
+  setTimeout(()=>{ btn.textContent='Add to Cart'; btn.classList.remove('added'); }, 1500);
+  updateCart();
+  showToast(`${p.emoji||'🧢'} ${p.name} added to cart!`);
 }
-function removeFromCart(i){cart.splice(i,1);updateCart();}
+
+function removeFromCart(i){
+  cart.splice(i, 1);
+  updateCart();
+}
+
 function updateCart(){
-  document.getElementById('cartCount').textContent=cart.length;
-  const items=document.getElementById('cartItems');
+  const total = cart.reduce((s,p) => s + Number(p.price), 0);
+  document.getElementById('cartCount').textContent = cart.length;
+  document.getElementById('cartTotal').textContent = '$' + total.toLocaleString('en');
+
+  const items = document.getElementById('cartItems');
   if(!cart.length){
-    items.innerHTML='<div class="cart-empty"><span class="cart-empty-icon">🧢</span><p style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;color:var(--muted)">CART IS EMPTY</p></div>';
-  }else{
-    items.innerHTML=cart.map((p,i)=>`
+    items.innerHTML = '<div class="cart-empty"><span class="cart-empty-icon">🧢</span><p style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;color:var(--muted)">CART IS EMPTY</p></div>';
+  } else {
+    items.innerHTML = cart.map((p,i) => `
       <div class="cart-item">
         <div class="cart-item-thumb">${p.image_url?`<img src="${p.image_url}" alt="">`:p.emoji||'🧢'}</div>
         <div class="cart-item-info">
@@ -692,16 +857,29 @@ function updateCart(){
         <button class="cart-item-remove" onclick="removeFromCart(${i})">✕</button>
       </div>`).join('');
   }
-  document.getElementById('cartTotal').textContent='$'+cart.reduce((s,p)=>s+Number(p.price),0).toLocaleString('en');
-}
-document.getElementById('cartToggleBtn').onclick=()=>toggleCart(true);
-document.getElementById('cartCloseBtn').onclick=()=>toggleCart(false);
-document.getElementById('cartOverlay').onclick=()=>toggleCart(false);
-function toggleCart(open){document.getElementById('cartOverlay').classList.toggle('open',open);document.getElementById('cartSidebar').classList.toggle('open',open);}
 
-// ADMIN LOGIN
-document.getElementById('adminToggleBtn').onclick=e=>{e.preventDefault();adminUnlocked?document.getElementById('adminPanel').classList.add('open'):showAdminLogin();};
-document.getElementById('adminCloseBtn').onclick=()=>document.getElementById('adminPanel').classList.remove('open');
+  // Re-render PayPal buttons to reflect new total
+  renderPayPalIfReady();
+}
+
+// ─── CART TOGGLE ──────────────────────────────────────────
+document.getElementById('cartToggleBtn').onclick = () => toggleCart(true);
+document.getElementById('cartCloseBtn').onclick  = () => toggleCart(false);
+document.getElementById('cartOverlay').onclick   = () => toggleCart(false);
+
+function toggleCart(open){
+  document.getElementById('cartOverlay').classList.toggle('open', open);
+  document.getElementById('cartSidebar').classList.toggle('open', open);
+  // Render PayPal buttons when cart opens
+  if(open) renderPayPalIfReady();
+}
+
+// ─── ADMIN LOGIN ──────────────────────────────────────────
+document.getElementById('adminToggleBtn').onclick = e => {
+  e.preventDefault();
+  adminUnlocked ? document.getElementById('adminPanel').classList.add('open') : showAdminLogin();
+};
+document.getElementById('adminCloseBtn').onclick = () => document.getElementById('adminPanel').classList.remove('open');
 
 function showAdminLogin(){
   document.getElementById('adminLoginModal')?.remove();
@@ -730,53 +908,69 @@ function showAdminLogin(){
     <div id="loginError" style="margin-top:1rem;font-family:'DM Mono',monospace;font-size:0.7rem;color:#ff5533;letter-spacing:0.05em;display:none;"></div>
   </div>`;
   document.body.appendChild(modal);
-  modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
-  setTimeout(()=>document.getElementById('loginUrl')?.focus(),100);
+  modal.addEventListener('click', e => { if(e.target===modal) modal.remove(); });
+  setTimeout(()=>document.getElementById('loginUrl')?.focus(), 100);
 }
 
 async function attemptAdminLogin(){
   const url=document.getElementById('loginUrl')?.value?.trim();
   const key=document.getElementById('loginKey')?.value?.trim();
   const btn=document.getElementById('loginBtn');
-  if(!url||!key){showLoginError('Fill in both fields!');return;}
-  if(btn){btn.textContent='CHECKING...';btn.style.opacity='0.7';}
+  if(!url||!key){ showLoginError('Fill in both fields!'); return; }
+  if(btn){ btn.textContent='CHECKING...'; btn.style.opacity='0.7'; }
   try{
     const c=supabase.createClient(url,key);
     const{error}=await c.from('products').select('id').limit(1);
-    if(error&&error.code!=='PGRST116')throw error;
-    sessionUrl=url;sessionKey=key;supabaseClient=c;adminUnlocked=true;
+    if(error&&error.code!=='PGRST116') throw error;
+    sessionUrl=url; sessionKey=key; supabaseClient=c; adminUnlocked=true;
     document.getElementById('adminLoginModal')?.remove();
     document.getElementById('adminPanel').classList.add('open');
-    showToast('Welcome! ✓');setDbStatus('connected','Supabase connected ✓');
+    showToast('Welcome! ✓');
+    setDbStatus('connected','Supabase connected ✓');
     loadProducts();
   }catch(e){
-    if(btn){btn.textContent='SIGN IN';btn.style.opacity='1';}
+    if(btn){ btn.textContent='SIGN IN'; btn.style.opacity='1'; }
     showLoginError('Wrong keys: '+(e.message||'check URL and Key'));
   }
 }
-function showLoginError(msg){const el=document.getElementById('loginError');if(!el)return;el.textContent='✕ '+msg;el.style.display='block';}
+function showLoginError(msg){ const el=document.getElementById('loginError'); if(!el) return; el.textContent='✕ '+msg; el.style.display='block'; }
 
-// ADMIN TABS
-function switchAdminTab(tab,btn){
+// ─── ADMIN TABS ───────────────────────────────────────────
+function switchAdminTab(tab, btn){
   document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('admin'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
-  if(btn)btn.classList.add('active');
+  if(btn) btn.classList.add('active');
 }
 
-// INIT
+// ─── INIT ─────────────────────────────────────────────────
 async function init(){
-  const cfg=window.EDITCAPS_CONFIG;
-  if(cfg&&cfg.supabaseUrl&&cfg.supabaseKey&&!cfg.supabaseUrl.includes('ТВОЙ_ПРОЕКТ')){
+  // Load products
+  const cfg = window.EDITCAPS_CONFIG;
+  if(cfg && cfg.supabaseUrl && cfg.supabaseKey && !cfg.supabaseUrl.includes('YOUR_PROJECT')){
     try{
-      supabaseClient=supabase.createClient(cfg.supabaseUrl,cfg.supabaseKey);
-      sessionUrl=cfg.supabaseUrl;sessionKey=cfg.supabaseKey;
+      supabaseClient = supabase.createClient(cfg.supabaseUrl, cfg.supabaseKey);
+      sessionUrl=cfg.supabaseUrl; sessionKey=cfg.supabaseKey;
       setDbStatus('blink','Loading products...');
       await loadProducts();
-    }catch(e){loadDemoProducts();}
-  }else{loadDemoProducts();setDbStatus('','Demo mode');}
+    }catch(e){ loadDemoProducts(); }
+  } else {
+    loadDemoProducts();
+    setDbStatus('','Demo mode');
+  }
+
+  // Load PayPal SDK
+  loadPayPalSDK();
+
+  // Show "add items" message in PayPal slot initially
+  const emptyMsg = document.getElementById('paypalEmptyMsg');
+  if(emptyMsg) emptyMsg.style.display = 'block';
 }
+
 init();
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
