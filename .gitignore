@@ -1,6 +1,17 @@
-# Файл с ключами Supabase — никогда не пушить!
+# ======================
+# EDIT CAPS — .gitignore
+# ======================
+
+# Secret config — contains API keys, NEVER commit this
 config.js
 
-# Системные файлы
+# OS junk
 .DS_Store
 Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node (if you ever add a build step)
+node_modules/
