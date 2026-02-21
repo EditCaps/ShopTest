@@ -5,5 +5,5 @@ window.EDITCAPS_CONFIG = {
   // PayPal Sandbox Client ID (for testing)
   // Get it at: https://developer.paypal.com → My Apps & Credentials → Sandbox
   // When ready for real payments, replace with your LIVE Client ID
-  paypalClientId: 'YOUR_PAYPAL_SANDBOX_CLIENT_ID'
+  paypalClientId: 'ATMeQVKdjHls1DV6xgcQFFyfy5D6XIY8_FEeTCY9nUPuESstJMgufD-OWsDRSLdyBHw90eav_3rOyR7Z'
 };
