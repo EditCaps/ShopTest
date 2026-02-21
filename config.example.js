@@ -2,6 +2,6 @@
 // config.js добавлен в .gitignore — его никто в GitHub не увидит
 
 window.EDITCAPS_CONFIG = {
-  supabaseUrl: 'https://ТВОЙ_ПРОЕКТ.supabase.co',
-  supabaseKey: 'ТВОЙ_ANON_KEY_СЮДА'
+  supabaseUrl: 'https://floccoqkcgkgtmasjukb.supabase.co',
+  supabaseKey: 'sb_publishable_Nw4Qja-AZinwWEDj7oy9zA_fD6W-o8d'
 };
